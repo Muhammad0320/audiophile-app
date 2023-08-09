@@ -71,8 +71,6 @@ function BillingDetails() {
             })}
           />
         </FormRow>
-
-        <Button> Submit </Button>
       </Form>
     </>
   );

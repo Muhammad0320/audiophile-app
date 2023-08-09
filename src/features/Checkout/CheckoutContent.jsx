@@ -3,6 +3,7 @@ import ContainerLayout from "../../ui/ContainerLayout";
 import Footer from "../../ui/Footer";
 import Header from "../../ui/Header";
 import BillingDetails from "./BillingDetails";
+import ShippingInfo from "./ShippingInfo";
 
 function CheckoutContent() {
   return (
@@ -11,6 +12,7 @@ function CheckoutContent() {
 
       <ContainerContent page="checkout">
         <BillingDetails />
+        <ShippingInfo />
       </ContainerContent>
 
       <Footer />

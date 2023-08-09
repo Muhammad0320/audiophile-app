@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
 const Input = styled.input`
   border: 1px solid var(--color-white-2);
@@ -14,10 +14,16 @@ const Input = styled.input`
     opacity: 0.7;
   }
 
-  &:valid,
+  /* &:valid,
   &:focus {
     border: 1px solid var(--color-primary);
-  }
+  } */
+
+  ${(props) =>
+    props.error &&
+    css`
+      border: 1px solid red;
+    `}
 `;
 
 export default Input;
