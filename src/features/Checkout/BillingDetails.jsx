@@ -59,7 +59,7 @@ function BillingDetails() {
         >
           <Input
             id="phone"
-            placeholder="example@gmail.com"
+            placeholder="+123 4567 8912 34"
             error={errors?.phone?.message}
             {...register("phone", {
               required: "This field is required",

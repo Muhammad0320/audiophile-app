@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
 const RadioInput = styled.input.attrs({ type: "radio" })`
   opacity: 0;
@@ -17,6 +17,12 @@ const StyledRadioButton = styled.span`
   height: 2.5rem;
 
   border: 2px solid rgba(0, 0, 0, 0.2);
+
+  ${(props) =>
+    props.isChecked === "checked" &&
+    css`
+      border: 2px solid var(--color-primary);
+    `}
 
   border-radius: 50%;
 
@@ -39,12 +45,12 @@ const RadioLabelContainer = styled.label`
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
   padding: 1rem 0;
-  width: 50%;
+  width: 100%;
 `;
 
 function RadioButton({ label, checked, onChange, value }) {
   return (
-    <RadioLabelContainer>
+    <RadioLabelContainer isChecked={checked ? "checked" : ""}>
       <RadioInput checked={checked} onChange={onChange} value={value} />
       <StyledRadioButton />
 

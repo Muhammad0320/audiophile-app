@@ -46,7 +46,7 @@ function ShippingInfo() {
           />
         </FormRow>
 
-        <FormRow label="city" position="right" error={errors?.city?.message}>
+        <FormRow label="City" position="right" error={errors?.city?.message}>
           <Input
             id="city"
             placeholder="Meddina"
@@ -58,7 +58,7 @@ function ShippingInfo() {
         </FormRow>
 
         <FormRow
-          label="country"
+          label="Country"
           position="left"
           error={errors?.country?.message}
         >

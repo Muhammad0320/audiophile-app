@@ -13,6 +13,15 @@ const CartItemContainer = styled.li`
   align-items: center;
 `;
 
+const CartText = styled.span`
+  color: var(--color-dark);
+  opacity: 0.7;
+  font-weight: 400;
+  font-size: 2rem;
+  margin-left: auto;
+  padding-right: 2rem;
+`;
+
 const CartItemDescription = styled.div`
   display: flex;
   flex-flow: column;
@@ -46,8 +55,8 @@ const ButtonDelete = styled.button`
   }
 `;
 
-function CartItem({ cart }) {
-  const { cartImage, productID, unitPrice, cartName } = cart;
+function CartItem({ cart, page }) {
+  const { cartImage, productID, unitPrice, cartName, quantity } = cart;
 
   const CurrentQuantity = useSelector(getCurrentItemQuantityById(productID));
 
@@ -64,15 +73,21 @@ function CartItem({ cart }) {
         <Text> {formatCurrency(unitPrice)} </Text>
       </CartItemDescription>
 
-      <UpdateCartItem
-        currentQuantity={CurrentQuantity}
-        id={productID}
-        type="cart"
-      />
+      {!page && (
+        <>
+          <UpdateCartItem
+            currentQuantity={CurrentQuantity}
+            id={productID}
+            type="cart"
+          />
 
-      <ButtonDelete onClick={() => dispatch(deleteItem(productID))}>
-        <HiXMark />
-      </ButtonDelete>
+          <ButtonDelete onClick={() => dispatch(deleteItem(productID))}>
+            <HiXMark />
+          </ButtonDelete>
+        </>
+      )}
+
+      {page && <CartText> {"X" + quantity} </CartText>}
     </CartItemContainer>
   );
 }

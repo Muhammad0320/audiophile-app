@@ -12,6 +12,8 @@ import EmptyCart from "../../ui/EmptyCart";
 import { useNavigate } from "react-router-dom";
 
 const StyledCart = styled.div`
+  align-self: flex-start;
+
   display: flex;
 
   border-radius: 1rem;
@@ -20,7 +22,7 @@ const StyledCart = styled.div`
   flex-flow: column;
   max-height: 100%;
   color: var(--color-dark);
-  row-gap: 2rem;
+
   padding: 2.5rem;
 
   &:has(button) {
@@ -42,12 +44,12 @@ const Container = styled.div`
 `;
 
 const CartText = styled.p`
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 600;
   text-transform: uppercase;
 `;
 
-function Cart() {
+function Cart({ page }) {
   const carts = useSelector(getCart);
 
   const dispatch = useDispatch();
@@ -55,6 +57,10 @@ function Cart() {
   const totalCartPrice = useSelector(getTotalCartPrice);
 
   const navigate = useNavigate();
+
+  const shippingFee = 50;
+
+  const vat = 0.2 * +totalCartPrice;
 
   if (!carts.length)
     return (
@@ -66,16 +72,19 @@ function Cart() {
   return (
     <StyledCart>
       <Container>
-        <CartText> Cart ({carts.length}) </CartText>
-        <SmallButton onClick={() => dispatch(clearCart())}>
-          {" "}
-          Remove All{" "}
-        </SmallButton>
+        <CartText>{!page ? `Cart (${carts.length})` : "Summary"}</CartText>
+
+        {!page && (
+          <SmallButton onClick={() => dispatch(clearCart())}>
+            {" "}
+            Remove All{" "}
+          </SmallButton>
+        )}
       </Container>
 
       <CartContainer>
         {carts.map((cart) => (
-          <CartItem key={cart.productID} cart={cart} />
+          <CartItem key={cart.productID} cart={cart} page={page} />
         ))}
       </CartContainer>
 
@@ -85,7 +94,34 @@ function Cart() {
         <CartText> {formatCurrency(totalCartPrice)} </CartText>
       </Container>
 
-      <Button onClick={() => navigate(`/checkout`)}> checkout </Button>
+      {page && (
+        <>
+          <Container>
+            <Text> SHIPPING FEES </Text>
+
+            <CartText> {formatCurrency(shippingFee)} </CartText>
+          </Container>
+
+          <Container>
+            <Text> {"VAT (INCLUDED)"} </Text>
+
+            <CartText> {formatCurrency(vat)} </CartText>
+          </Container>
+
+          <Container>
+            <Text> GRAND TOTAL </Text>
+
+            <CartText>
+              {" "}
+              {formatCurrency(totalCartPrice + vat + shippingFee)}{" "}
+            </CartText>
+          </Container>
+        </>
+      )}
+
+      {!page && (
+        <Button onClick={() => navigate(`/checkout`)}> checkout </Button>
+      )}
     </StyledCart>
   );
 }
