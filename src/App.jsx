@@ -6,6 +6,7 @@ import Earphone from "./pages/Earphone";
 import Speakers from "./pages/Speakers";
 import GlobalStyles from "./styles/GlobalStyles";
 import Details from "./pages/Details";
+import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
             <Route path="headphones" element={<Headphone />} />
             <Route path="earphones" element={<Earphone />} />
             <Route path="speakers" element={<Speakers />} />
+            <Route path="checkout" element={<CheckoutPage />} />
+
             <Route path="product/:productID" element={<Details />} />
           </Route>
         </Routes>

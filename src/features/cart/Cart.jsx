@@ -9,6 +9,7 @@ import { clearCart, getCart, getTotalCartPrice } from "./cartSlice";
 import Button from "../../ui/Button";
 import CartItem from "./CartItem";
 import EmptyCart from "../../ui/EmptyCart";
+import { useNavigate } from "react-router-dom";
 
 const StyledCart = styled.div`
   display: flex;
@@ -53,6 +54,8 @@ function Cart() {
 
   const totalCartPrice = useSelector(getTotalCartPrice);
 
+  const navigate = useNavigate();
+
   if (!carts.length)
     return (
       <StyledCart>
@@ -82,7 +85,7 @@ function Cart() {
         <CartText> {formatCurrency(totalCartPrice)} </CartText>
       </Container>
 
-      <Button> checkout </Button>
+      <Button onClick={() => navigate(`/checkout`)}> checkout </Button>
     </StyledCart>
   );
 }
