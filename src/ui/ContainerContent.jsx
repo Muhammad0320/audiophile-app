@@ -6,12 +6,15 @@ const StyledContent = styled.div`
   ${(props) =>
     props.page === "checkout" &&
     css`
-      background-color: var(--color-white-2);
+      background-color: var(--color-white);
+      margin: 10rem 0;
+      border-radius: 1.2rem;
+      padding: 3.5rem 4rem;
     `}
 `;
 
 function ContainerContent({ children, page }) {
-  return <StyledContent {...page}> {children} </StyledContent>;
+  return <StyledContent page={page}> {children} </StyledContent>;
 }
 
 export default ContainerContent;

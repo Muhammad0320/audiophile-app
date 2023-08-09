@@ -40,7 +40,7 @@ function ShippingInfo() {
             {...register("zip", {
               required: "This field is required",
               pattern: {
-                value: /^[0-9]{5}(?:-[0-9]{4})?$/,
+                value: /^[0-9]{6}(?:-[0-9]{4})?$/,
                 message: "Wrong Zip code format",
               },
             })}
@@ -72,8 +72,6 @@ function ShippingInfo() {
             })}
           />
         </FormRow>
-
-        <Button> Submit </Button>
       </Form>
     </>
   );
