@@ -7,6 +7,7 @@ import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import { useForm } from "react-hook-form";
+import PayOnDelivery from "./PayOnDelivery";
 
 const RadioButtonsContainer = styled.div`
   display: flex;
@@ -82,7 +83,7 @@ function PaymentDetails() {
               position="right"
             >
               <Input
-                placeholder="1967"
+                placeholder="4967"
                 error={errors?.pin?.message}
                 {...register("pin", {
                   required: "This field is required",
@@ -94,6 +95,12 @@ function PaymentDetails() {
               />
             </FormRow>
           </>
+        )}
+
+        {checked === "cash" && (
+          <FormRow position="both">
+            <PayOnDelivery />
+          </FormRow>
         )}
       </Form>
     </>

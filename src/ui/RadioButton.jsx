@@ -12,7 +12,7 @@ const StyledRadioButton = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin-left: -2.2rem;
   width: 2.5rem;
   height: 2.5rem;
 
@@ -33,6 +33,7 @@ const StyledRadioButton = styled.span`
 
 const RadioLabelContainer = styled.label`
   display: flex;
+  font-weight: 600;
   column-gap: 2rem;
   cursor: pointer;
   border: 2px solid rgba(0, 0, 0, 0.2);
