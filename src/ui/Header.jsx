@@ -69,7 +69,7 @@ const ProductType = styled.p`
 `;
 
 const ProductName = styled.h1`
-  font-size: 5.6rem;
+  font-size: 6rem;
   font-weight: 600;
   margin: 0;
   text-transform: uppercase;
@@ -101,7 +101,10 @@ function Header({ category, home }) {
         <StyledHeaderContent content="home">
           <StyledHeaderText>
             <ProductType> new Product </ProductType>
-            <ProductName> xx99 mark II headphones </ProductName>
+            <ProductName>
+              {" "}
+              xx99 mark II <br /> headphones{" "}
+            </ProductName>
             <Text>
               {" "}
               Experience natural, lifelike audio and exceptional <br /> build

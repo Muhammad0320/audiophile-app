@@ -33,7 +33,7 @@ const TextHeader = styled.h3`
 `;
 
 const Text = styled.p`
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--color-dark-1);
   padding-right: 3rem;
   opacity: 0.6;
@@ -53,8 +53,8 @@ function ContainerHero() {
           for high end headphones, earphones, speakers, and audio accessories.
           We have a large showroom and luxury demonstration rooms available for
           you to browse and experience a wide range of our products. Stop by our
-          store to meet some of the fantastic people who make Audiophile the
-          best place to buy your portable audio equipment.{" "}
+          store to meet some of <br /> the fantastic people who make Audiophile
+          the best place to buy your portable audio equipment.{" "}
         </Text>
       </TextGroup>
 
