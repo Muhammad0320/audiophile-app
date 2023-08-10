@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import { IconCart, IconLogo } from "./Icons";
 import Modal from "./Modal";
 import Cart from "../features/cart/Cart";
+import { useSelector } from "react-redux";
+import { getTotalCartQuantity } from "../features/cart/cartSlice";
 
 const StyledNav = styled.nav`
   display: flex;
@@ -36,9 +38,28 @@ const NavItem = styled(NavLink)`
 
 const HeaderIcon = styled(NavLink)`
   cursor: pointer;
+
+  position: relative;
+`;
+
+const CartIconNotification = styled.span`
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  font-size: 1.2rem;
+  background-color: var(--color-white);
+  color: rgba(0, 0, 0, 0.7);
 `;
 
 function Nav({ type }) {
+  const totalQuantity = useSelector(getTotalCartQuantity);
+
   return (
     <Modal>
       {type === "header" && (
@@ -59,6 +80,10 @@ function Nav({ type }) {
           <Modal.Open opens="cart">
             <HeaderIcon>
               <SVG src={IconCart} />
+
+              {totalQuantity > 0 && (
+                <CartIconNotification> {totalQuantity} </CartIconNotification>
+              )}
             </HeaderIcon>
           </Modal.Open>
 

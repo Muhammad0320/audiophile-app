@@ -16,11 +16,7 @@ import { css, styled } from "styled-components";
 import { useMoveBack } from "../../hooks/useMoveBack";
 import SmallButton from "../../ui/SmallButton";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addItem,
-  getCart,
-  getCurrentItemQuantityById,
-} from "../cart/cartSlice";
+import { addItem, getCurrentItemQuantityById } from "../cart/cartSlice";
 
 import UpdateCartItem from "../../ui/UpdateCartItem";
 
@@ -179,15 +175,9 @@ function ProductDetails() {
     dispatch(addItem(newCartItem));
   };
 
-  console.log(useSelector(getCart));
-
   const currentQuantity = useSelector(getCurrentItemQuantityById(id));
 
-  console.log(currentQuantity);
-
   const isInCart = currentQuantity > 0;
-
-  console.log(isInCart);
 
   return (
     <ProductContainer>

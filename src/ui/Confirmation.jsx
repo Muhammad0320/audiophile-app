@@ -29,6 +29,8 @@ const StyledContainer = styled.div`
   padding: 5rem 3rem;
 `;
 
+
+
 const StyledIcon = styled.span`
   width: 100%;
 `;
@@ -74,6 +76,8 @@ const CartOverview = styled.div`
   padding: 2.5rem;
   grid-column: 1 / 2;
 `;
+
+
 
 const OtherCartItem = styled.div`
   border-top: 1px solid var(--color-dark);

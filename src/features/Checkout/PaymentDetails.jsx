@@ -106,11 +106,21 @@ function PaymentDetails() {
           </FormRow>
         )}
 
-        <FormRow position="right">
-          <Modal.Open opens="checkout">
-            <Button> Continue & pay </Button>
-          </Modal.Open>
-        </FormRow>
+        {checked === "e-money" && (
+          <FormRow position="right">
+            <Modal.Open opens="checkout">
+              <Button> Continue & pay </Button>
+            </Modal.Open>
+          </FormRow>
+        )}
+
+        {checked === "cash" && (
+          <FormRow position="right">
+            <Modal.Open opens="checkout">
+              <Button> Continue & pay </Button>
+            </Modal.Open>
+          </FormRow>
+        )}
 
         <Modal.Window name="checkout" page="confirm">
           <Confirmation />
