@@ -22,6 +22,10 @@ const StyledFormRow = styled.div`
     css`
       grid-column: 1 / -1;
     `}
+
+    &:has(btn) btn {
+    align-self: flex-end;
+  }
 `;
 
 const LabelContainer = styled.div`
@@ -52,11 +56,13 @@ const Error = styled.span`
 function FormRow({ children, error, label, position }) {
   return (
     <StyledFormRow position={position}>
-      <LabelContainer>
-        {label && <Label htmlFor={children.props.id}> {label} </Label>}
-        {label && error && <Label type="error"> </Label>}
-        {error && <Error> {error} </Error>}
-      </LabelContainer>
+      {label && (
+        <LabelContainer>
+          {label && <Label htmlFor={children?.props?.id}> {label} </Label>}
+          {label && error && <Label type="error"> </Label>}
+          {error && <Error> {error} </Error>}
+        </LabelContainer>
+      )}
 
       {children}
     </StyledFormRow>

@@ -2,9 +2,9 @@ import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import InputTypeHeader from "../../ui/InputTypeHeader";
-import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import { styled } from "styled-components";
+import Button from "../../ui/Button";
 
 const FormHeader = styled.div`
   font-size: 3.5rem;
@@ -70,6 +70,10 @@ function BillingDetails() {
               },
             })}
           />
+        </FormRow>
+
+        <FormRow position="left">
+          <Button> Next </Button>
         </FormRow>
       </Form>
     </>

@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import SmallButton from "../../ui/SmallButton";
 
 import { Text } from "../category/Category";
@@ -10,6 +10,7 @@ import Button from "../../ui/Button";
 import CartItem from "./CartItem";
 import EmptyCart from "../../ui/EmptyCart";
 import { useNavigate } from "react-router-dom";
+import { grandTotalPrice } from "../../utils/constant";
 
 const StyledCart = styled.div`
   align-self: flex-start;
@@ -43,10 +44,16 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const CartText = styled.p`
+export const CartTextBold = styled.p`
   font-size: 2rem;
   font-weight: 600;
   text-transform: uppercase;
+
+  ${(props) =>
+    props.page === "confirm" &&
+    css`
+      color: var(--color-white);
+    `}
 `;
 
 function Cart({ page }) {
@@ -72,7 +79,9 @@ function Cart({ page }) {
   return (
     <StyledCart>
       <Container>
-        <CartText>{!page ? `Cart (${carts.length})` : "Summary"}</CartText>
+        <CartTextBold>
+          {!page ? `Cart (${carts.length})` : "Summary"}
+        </CartTextBold>
 
         {!page && (
           <SmallButton onClick={() => dispatch(clearCart())}>
@@ -91,7 +100,7 @@ function Cart({ page }) {
       <Container>
         <Text> TOTAL </Text>
 
-        <CartText> {formatCurrency(totalCartPrice)} </CartText>
+        <CartTextBold> {formatCurrency(totalCartPrice)} </CartTextBold>
       </Container>
 
       {page && (
@@ -99,22 +108,22 @@ function Cart({ page }) {
           <Container>
             <Text> SHIPPING FEES </Text>
 
-            <CartText> {formatCurrency(shippingFee)} </CartText>
+            <CartTextBold> {formatCurrency(shippingFee)} </CartTextBold>
           </Container>
 
           <Container>
             <Text> {"VAT (INCLUDED)"} </Text>
 
-            <CartText> {formatCurrency(vat)} </CartText>
+            <CartTextBold> {formatCurrency(vat)} </CartTextBold>
           </Container>
 
           <Container>
             <Text> GRAND TOTAL </Text>
 
-            <CartText>
+            <CartTextBold>
               {" "}
-              {formatCurrency(totalCartPrice + vat + shippingFee)}{" "}
-            </CartText>
+              {formatCurrency(grandTotalPrice(+totalCartPrice))}{" "}
+            </CartTextBold>
           </Container>
         </>
       )}

@@ -3,6 +3,7 @@ import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import InputTypeHeader from "../../ui/InputTypeHeader";
 import Form from "../../ui/Form";
+import Button from "../../ui/Button";
 
 function ShippingInfo() {
   const { register, handleSubmit, reset, formState } = useForm();
@@ -70,6 +71,10 @@ function ShippingInfo() {
               required: "This field is required",
             })}
           />
+
+          <FormRow position="right">
+            <Button> Continue </Button>
+          </FormRow>
         </FormRow>
       </Form>
     </>

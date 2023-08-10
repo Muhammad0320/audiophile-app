@@ -8,6 +8,9 @@ import BillingDetails from "./BillingDetails";
 import Checkout from "./Checkout";
 import PaymentDetails from "./PaymentDetails";
 import ShippingInfo from "./ShippingInfo";
+import { useSelector } from "react-redux";
+import { getCart } from "../cart/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const StyledCheckoutForm = styled.div`
   background-color: var(--color-white);
@@ -17,6 +20,12 @@ const StyledCheckoutForm = styled.div`
 `;
 
 function CheckoutContent() {
+  const cart = useSelector(getCart);
+
+  const navigate = useNavigate();
+
+  if (!cart.length) return navigate(`/home`);
+
   return (
     <ContainerLayout page="checkout">
       <Header />

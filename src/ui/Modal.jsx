@@ -13,11 +13,24 @@ const StyledModal = styled.div`
   transform: translate(70%, -35%);
 `;
 
+const StyledModalConfirm = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-white);
+  border-radius: 1.5rem;
+  /* height: 80%; */
+  /* box-shadow: var(--shadow-lg); */
+  /* padding: 3.2rem 4rem; */
+  transition: all 0.5s;
+`;
+
 const OverLay = styled.div`
   inset: 0;
   position: fixed;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
   height: 100dvh;
   width: 100dvw;
@@ -46,18 +59,28 @@ const Open = ({ children, opens }) => {
   return cloneElement(children, { onClick: () => open(() => opens) });
 };
 
-const Window = ({ children, name }) => {
+const Window = ({ children, name, page }) => {
   const { openModal, close } = useContext(ModalContext);
 
   const { ref } = useClickOutside(close);
+
+  console.log(page);
 
   if (openModal !== name) return null;
 
   return createPortal(
     <OverLay>
-      <StyledModal ref={ref}>
-        {cloneElement(children, { onClose: () => close() })}
-      </StyledModal>
+      {!page && (
+        <StyledModal ref={ref}>
+          {cloneElement(children, { onClose: () => close() })}
+        </StyledModal>
+      )}
+
+      {page && (
+        <StyledModalConfirm ref={ref}>
+          {cloneElement(children, { onClose: () => close() })}
+        </StyledModalConfirm>
+      )}
     </OverLay>,
 
     document.body

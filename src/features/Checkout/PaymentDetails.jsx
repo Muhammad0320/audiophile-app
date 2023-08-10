@@ -8,6 +8,9 @@ import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import { useForm } from "react-hook-form";
 import PayOnDelivery from "./PayOnDelivery";
+import Button from "../../ui/Button";
+import Modal from "../../ui/Modal";
+import Confirmation from "../../ui/Confirmation";
 
 const RadioButtonsContainer = styled.div`
   display: flex;
@@ -32,7 +35,7 @@ function PaymentDetails() {
   };
 
   return (
-    <>
+    <Modal>
       <InputTypeHeader> payment details </InputTypeHeader>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormRow label="payment method" position="left">
@@ -102,8 +105,18 @@ function PaymentDetails() {
             <PayOnDelivery />
           </FormRow>
         )}
+
+        <FormRow position="right">
+          <Modal.Open opens="checkout">
+            <Button> Continue & pay </Button>
+          </Modal.Open>
+        </FormRow>
+
+        <Modal.Window name="checkout" page="confirm">
+          <Confirmation />
+        </Modal.Window>
       </Form>
-    </>
+    </Modal>
   );
 }
 

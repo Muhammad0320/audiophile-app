@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import { Text } from "../category/Category";
 import UpdateCartItem from "../../ui/UpdateCartItem";
 import { formatCurrency } from "../../utils/helper";
@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteItem, getCurrentItemQuantityById } from "./cartSlice";
 import { HiXMark } from "react-icons/hi2";
 
-const CartItemContainer = styled.li`
+export const CartItemContainer = styled.li`
   display: flex;
   column-gap: 1rem;
   color: var(--color-dark);
   align-items: center;
 `;
 
-const CartText = styled.span`
+export const CartText = styled.span`
   color: var(--color-dark);
   opacity: 0.7;
   font-weight: 400;
@@ -22,24 +22,31 @@ const CartText = styled.span`
   padding-right: 2rem;
 `;
 
-const CartItemDescription = styled.div`
+export const CartItemDescription = styled.div`
   display: flex;
   flex-flow: column;
 `;
 
-const CartItemName = styled.p`
+export const CartItemName = styled.p`
   margin-right: auto;
   margin-bottom: -2rem;
   font-size: 2rem;
   font-weight: 600;
 `;
 
-const CartItemImageContainer = styled.div`
+export const CartItemImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 30%;
   width: 30%;
+
+  ${(props) =>
+    props.page === "checkout" &&
+    css`
+      height: 25%;
+      width: 25%;
+    `}
 `;
 
 const ButtonDelete = styled.button`
