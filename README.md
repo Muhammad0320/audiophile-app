@@ -20,7 +20,7 @@ A fully functional website for an e-commerce platform. This website allows users
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/muhammad0320/audiophile-app.git`
+1. Clone the repository: `git clone https://github.com/Muhammad0320/audiophile-app.git`
 2. Navigate to the project directory: `cd ecommerce-app`
 3. Install dependencies: `npm install`
 
